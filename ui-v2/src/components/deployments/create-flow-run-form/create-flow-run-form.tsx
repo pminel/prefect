@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import type { Deployment } from "@/api/deployments";
 import { LazySchemaForm, type PrefectSchemaObject } from "@/components/schemas";
+import { LazyMarkdown } from "@/components/ui/lazy-markdown";
 import {
 	Accordion,
 	AccordionContent,
@@ -76,6 +77,18 @@ export const CreateFlowRunForm = ({
 						</FormItem>
 					)}
 				/>
+
+				{deployment.description && (
+					<div className="pt-4 border-t">
+						<h3 className="text-2xl font-semibold tracking-tight mb-4">
+							Description
+						</h3>
+
+						<div className="max-w-none text-xs prose dark:prose-invert">
+							<LazyMarkdown>{deployment.description}</LazyMarkdown>
+						</div>
+					</div>
+				)}
 
 				{parametersOpenAPISchema && (
 					<div className="pt-4 border-t">
